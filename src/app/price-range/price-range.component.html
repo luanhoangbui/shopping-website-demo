@@ -1,0 +1,25 @@
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Price range
+            </mat-panel-title>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </mat-expansion-panel-header>
+        <mat-slider min="0" max="10000" step="1" value="5000"></mat-slider>
+
+        <div>
+            Price:
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="input-range">
+                <mat-label>Budget</mat-label>
+                <input matInput placeholder="0">
+                <mat-icon matSuffix>attach_money</mat-icon>
+
+            </mat-form-field>
+        </div>
+
+    </mat-expansion-panel>
+
+</mat-accordion>

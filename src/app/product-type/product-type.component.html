@@ -1,0 +1,20 @@
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Product type
+            </mat-panel-title>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </mat-expansion-panel-header>
+
+        <mat-form-field appearance="outline" class="search-bar">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <div *ngFor="let type of types" class="product-type">
+            {{type}}
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

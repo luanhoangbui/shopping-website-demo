@@ -1,0 +1,25 @@
+.mat-form-field+.mat-form-field {
+    margin-left: 8px;
+}
+
+.mat-expansion-panel-header {
+    color: #304ffe;
+    font-weight: 550;
+    font-size: 16px;
+}
+
+.mat-expansion-panel-header-title {
+    color: #304ffe;
+}
+
+.product-type {
+    margin: 10px 0 10px 0;
+}
+
+.search-bar {
+    width: 100%;
+}
+
+::ng-deep .mat-form-field-flex {
+    height: 49px;
+}

@@ -1,0 +1,24 @@
+.toggle {
+    height: 43px;
+    margin-left: 10px;
+}
+
+.toggle-button {
+    padding-top: 4px;
+    margin-top: 0;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 10px;
+    height: 49px;
+}
+
+::ng-deep .mat-form-field-flex {
+    height: 49px;
+}

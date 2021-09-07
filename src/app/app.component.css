@@ -1,0 +1,26 @@
+body {
+    background-color: rgb(245, 245, 245);
+}
+
+.container {
+    width: 1200px;
+    margin: auto;
+}
+
+.side-bar {
+    margin-left: 0;
+    max-width: 1000px;
+}
+
+.products {
+    margin-right: 0;
+    margin-top: -70px
+}
+
+.left {
+    float: right;
+}
+
+::ng-deep .mat-grid-tile-content {
+    align-items: flex-start !important;
+}
