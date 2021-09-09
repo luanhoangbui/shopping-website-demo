@@ -1,13 +1,13 @@
 <div class="container">
-    <mat-grid-list cols="4" rowHeight="100px">
-        <mat-grid-tile [colspan]="1" [rowspan]="10" class="bar">
+    <mat-grid-list cols="4">
+        <mat-grid-tile [colspan]="1" [rowspan]="3" class="bar">
             <div class="side-bar">
                 <app-product-type></app-product-type>
                 <app-brands></app-brands>
                 <app-price-range></app-price-range>
             </div>
         </mat-grid-tile>
-        <mat-grid-tile [colspan]="3" [rowspan]="10" class="view">
+        <mat-grid-tile [colspan]="3" [rowspan]="4" class="view">
             <div class="products">
                 <app-view-type></app-view-type>
                 <mat-divider></mat-divider>

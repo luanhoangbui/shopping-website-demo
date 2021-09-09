@@ -1,81 +1,23 @@
-<mat-card class="example-card" matBadge="NEW" matBadgePosition="before">
+<mat-card class="example-card" *ngFor="let product of products$ | async">
     <mat-grid-list cols="4" rowHeight="100px">
-        <mat-grid-tile [colspan]="1" [rowspan]="2">
-            <img mat-card-lg-image src="https://static.dosi-in.com/images/detailed/111/dosiin-dkmv-dkmv-square-destroyed-jean-111354111354.jpeg">
+        <mat-grid-tile [colspan]="1" [rowspan]="2" matBadge="NEW" matBadgePosition="before">
+            <img mat-card-lg-image src="{{product.imgLink}}">
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="2">
             <div>
                 <mat-card-title-group>
-                    <mat-card-title style="font-size:1rem">Great product name goes here</mat-card-title>
-                    <mat-card-subtitle>4 star</mat-card-subtitle>
+                    <mat-card-title style="font-size:1rem">{{product.name}}</mat-card-title>
+                    <mat-card-subtitle>{{product.rating}} star</mat-card-subtitle>
                 </mat-card-title-group>
                 <mat-card-content style="margin-right: 10px">
-                    {{longText}}
+                    {{product.description}}
                 </mat-card-content>
             </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="2" style="border-left: 1px solid gainsboro;">
             <div class="buy">
                 <mat-card-title-group>
-                    <mat-card-title>$140</mat-card-title>
-                    <mat-card-subtitle style="color: limegreen;">Free shipping</mat-card-subtitle>
-                </mat-card-title-group>
-                <button mat-button color="primary" style="background-color: #304ffe;width: 100%; color:white; margin-bottom: 5px">Details</button>
-                <button mat-button style="width:100%; background-color:gainsboro "><mat-icon matSuffix style="font-size:1.2rem; color: grey">favorite</mat-icon> Add to wishlist</button>
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list>
-</mat-card>
-
-<mat-card class="example-card">
-    <mat-grid-list cols="4" rowHeight="100px">
-        <mat-grid-tile [colspan]="1" [rowspan]="2">
-            <img mat-card-lg-image src="https://static.dosi-in.com/images/detailed/111/dosiin-dkmv-dkmv-square-destroyed-jean-111354111354.jpeg">
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="2" [rowspan]="2">
-            <div>
-                <mat-card-title-group>
-                    <mat-card-title style="font-size:1rem">Great product name goes here</mat-card-title>
-                    <mat-card-subtitle>4 star</mat-card-subtitle>
-                </mat-card-title-group>
-                <mat-card-content style="margin-right: 10px">
-                    {{longText}}
-                </mat-card-content>
-            </div>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="2" style="border-left: 1px solid gainsboro;">
-            <div class="buy">
-                <mat-card-title-group>
-                    <mat-card-title>$140</mat-card-title>
-                    <mat-card-subtitle style="color: limegreen;">Free shipping</mat-card-subtitle>
-                </mat-card-title-group>
-                <button mat-button color="primary" style="background-color: #304ffe;width: 100%; color:white; margin-bottom: 5px">Details</button>
-                <button mat-button style="width:100%; background-color:gainsboro "><mat-icon matSuffix style="font-size:1.2rem; color: grey">favorite</mat-icon> Add to wishlist</button>
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list>
-</mat-card>
-
-<mat-card class="example-card">
-    <mat-grid-list cols="4" rowHeight="100px">
-        <mat-grid-tile [colspan]="1" [rowspan]="2">
-            <img mat-card-lg-image src="https://static.dosi-in.com/images/detailed/111/dosiin-dkmv-dkmv-square-destroyed-jean-111354111354.jpeg">
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="2" [rowspan]="2">
-            <div>
-                <mat-card-title-group>
-                    <mat-card-title style="font-size:1rem">Great product name goes here</mat-card-title>
-                    <mat-card-subtitle>4 star</mat-card-subtitle>
-                </mat-card-title-group>
-                <mat-card-content style="margin-right: 10px">
-                    {{longText}}
-                </mat-card-content>
-            </div>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="2" style="border-left: 1px solid gainsboro;">
-            <div class="buy">
-                <mat-card-title-group>
-                    <mat-card-title>$140</mat-card-title>
+                    <mat-card-title>${{product.price}}</mat-card-title>
                     <mat-card-subtitle style="color: limegreen;">Free shipping</mat-card-subtitle>
                 </mat-card-title-group>
                 <button mat-button color="primary" style="background-color: #304ffe;width: 100%; color:white; margin-bottom: 5px">Details</button>

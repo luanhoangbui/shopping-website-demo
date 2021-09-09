@@ -1,12 +1,13 @@
+.order {
+    font-size: 12px;
+}
+
 .toggle {
-    height: 43px;
+    height: 44px;
     margin-left: 10px;
 }
 
-.toggle-button {
-    padding-top: 4px;
-    margin-top: 0;
-}
+.toggle-button {}
 
 .top-bar {
     display: flex;

@@ -13,6 +13,8 @@
 }
 
 ::ng-deep .mat-badge-content {
+    margin-top: 15px;
+    margin-left: 15px;
     font-size: 12;
     font-weight: 800;
     width: 5px;

@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { productReducer } from './counter.reducer';
 
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
@@ -22,6 +24,7 @@ import { BrandsComponent } from './brands/brands.component';
 import { PriceRangeComponent } from './price-range/price-range.component';
 import { ViewTypeComponent } from './view-type/view-type.component';
 import { ListProductComponent } from './list-product/list-product.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { ListProductComponent } from './list-product/list-product.component';
     MatCardModule,
     MatButtonModule,
     MatDividerModule,
-    MatBadgeModule
+    MatBadgeModule,
+    HttpClientModule,
+    StoreModule.forRoot({ products: productReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]

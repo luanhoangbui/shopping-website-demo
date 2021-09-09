@@ -18,6 +18,7 @@
 
 .search-bar {
     width: 100%;
+    font-size: 12px;
 }
 
 ::ng-deep .mat-form-field-flex {
