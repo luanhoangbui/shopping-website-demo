@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { changeView, orderLatest, orderNewest } from '../Actions/products.action';
 
 @Component({
   selector: 'app-view-type',
@@ -7,7 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewTypeComponent implements OnInit {
 
-  constructor() { }
+  view = true;
+  onList() { this.store.dispatch(changeView({ view: true })) };
+  onGrid() { this.store.dispatch(changeView({ view: false })) };
+
+  products$: Observable<any>;
+  constructor(private store: Store<{ products: any }>) {
+    this.products$ = store.select('products');
+  }
+
+  onLatest() {
+    this.store.dispatch(orderLatest());
+  };
+  onNewest() {
+    this.store.dispatch(orderNewest());
+  };
 
   ngOnInit(): void {
   }

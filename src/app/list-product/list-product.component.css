@@ -1,7 +1,27 @@
-.example-card {
+.list-product {
     width: 850px;
     margin-bottom: 20px;
     margin-top: 20px;
+    align-items: center;
+}
+
+::ng-deep .mat-grid-tile-content {
+    align-items: flex-start;
+}
+
+.grid-product {
+    width: 220px;
+    padding: 20px !important;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.grid-item {
+    padding: 0 0 20px 0;
+}
+
+.grid-buy {
+    margin: 20px 0 20px 0px !important;
 }
 
 .mat-card {

@@ -14,8 +14,14 @@ export class HttpServerService {
   }
   constructor(private httpClient: HttpClient) { }
 
-  public getProducts() : Observable<any> {
-    const url =`${this.API_SERVER}/products` ;
+  public getProducts(): Observable<any> {
+    const url = `${this.API_SERVER}/products`;
     return this.httpClient.get<any>(url, this.httpOptions);
+  }
+
+  public filterProducts(): Observable<any> {
+    const url = `${this.API_SERVER}/products`;
+    return this.httpClient.get<any>(url, this.httpOptions);
+
   }
 }

@@ -1,18 +1,18 @@
 <div class="top-bar">
-    <mat-label>32 products found</mat-label>
+    <mat-label>Products found</mat-label>
     <div>
         <mat-form-field appearance="outline" class="order">
             <mat-label>Order</mat-label>
             <mat-select matNativeControl required appearance="outline">
-                <mat-option value="latest">Latest Item</mat-option>
-                <mat-option value="newest">Newest Item</mat-option>
+                <mat-option value="latest" (click)="onLatest()">Latest Item</mat-option>
+                <mat-option value="newest" (click)="onNewest()">Newest Item</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="toggle">
-            <mat-button-toggle value="list" class="toggle-button">
+            <mat-button-toggle value="list" class="toggle-button" (click)="onList()">
                 <mat-icon style="margin-top:-6px">menu</mat-icon>
             </mat-button-toggle>
-            <mat-button-toggle value="grid" class="toggle-button">
+            <mat-button-toggle value="grid" class="toggle-button" (click)="onGrid()">
                 <mat-icon style="margin-top:-6px">grid_on</mat-icon>
             </mat-button-toggle>
         </mat-button-toggle-group>

@@ -1,17 +1,19 @@
 <div class="container">
     <mat-grid-list cols="4">
-        <mat-grid-tile [colspan]="1" [rowspan]="3" class="bar">
+        <mat-grid-tile [colspan]="1" [rowspan]="4" class="bar">
             <div class="side-bar">
                 <app-product-type></app-product-type>
                 <app-brands></app-brands>
                 <app-price-range></app-price-range>
             </div>
         </mat-grid-tile>
-        <mat-grid-tile [colspan]="3" [rowspan]="4" class="view">
-            <div class="products">
-                <app-view-type></app-view-type>
-                <mat-divider></mat-divider>
-                <app-list-product></app-list-product>
+        <mat-grid-tile [colspan]="3" [rowspan]="5" class="view" id="list-product-wrapper">
+            <div class="wrapper-product">
+                <div class="products">
+                    <app-view-type></app-view-type>
+                    <mat-divider></mat-divider>
+                    <app-list-product></app-list-product>
+                </div>
             </div>
         </mat-grid-tile>
     </mat-grid-list>

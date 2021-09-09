@@ -5,16 +5,23 @@ body {
 .container {
     width: 1200px;
     margin: auto;
+    margin-top: 50px
+}
+
+.wrapper-product {
+    display: flex;
+    align-items: flex-start;
 }
 
 .side-bar {
     margin-left: 0;
     max-width: 1000px;
+    margin-top: 88px
 }
 
 .products {
     margin-right: 0;
-    margin-top: -100px
+    width: 850px;
 }
 
 .left {

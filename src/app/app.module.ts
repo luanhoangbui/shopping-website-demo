@@ -4,21 +4,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
-import { productReducer } from './counter.reducer';
+import { productReducer } from './Reducers/products.reducer';
 
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatListModule} from '@angular/material/list';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatBadgeModule} from '@angular/material/badge';
+
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NgxMatRangeSliderModule } from 'ngx-mat-range-slider';
 import { ProductTypeComponent } from './product-type/product-type.component';
 import { BrandsComponent } from './brands/brands.component';
 import { PriceRangeComponent } from './price-range/price-range.component';
@@ -51,8 +54,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatDividerModule,
     MatBadgeModule,
+    MatAutocompleteModule,
+    NgxMatRangeSliderModule,
     HttpClientModule,
-    StoreModule.forRoot({ products: productReducer })
+    StoreModule.forRoot({ products: productReducer }),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

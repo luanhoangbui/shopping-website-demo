@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpServerService } from '../Services/http-server.service';
 import { Store } from '@ngrx/store';
-import { increment, reset } from '../counter.action';
+import { increment, searchProducts } from '../Actions/products.action';
+import { Products } from './product.model';
 
 @Component({
   selector: 'app-list-product',
@@ -13,26 +14,29 @@ import { increment, reset } from '../counter.action';
 
 export class ListProductComponent implements OnInit {
 
+  view = true;
   products$: Observable<any>;
 
-  products = [
-    {id : 1, name: 'Great product name goes here', rating: 4 ,description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.', price: 140, brand: 'Gucci', imgLink: 'https://static.dosi-in.com/images/detailed/111/dosiin-dkmv-dkmv-square-destroyed-jean-111354111354.jpeg'}
-  ];
+  products: Array<Products> = [];
+  searchedProducts: Array<Products> = [];
 
-  constructor( private httpServerService: HttpServerService, private store: Store<{ products: any }>) { 
+  constructor(private httpServerService: HttpServerService, private store: Store<{ products: any }>) {
     this.products$ = store.select('products');
   }
 
 
   public ngOnInit(): void {
-    
     this.httpServerService.getProducts().subscribe(data => {
       this.products = data;
-      this.store.dispatch(increment({products : data}));
-      console.log(data)
+      this.store.dispatch(searchProducts({ products: data, searchedProducts: data }));
+
     });
-    console.log(this.products$)
+    this.products$.subscribe(data => {
+      this.products = data.products;
+      this.view = data.isList;
+      this.searchedProducts = data.searchedProducts;
+    })
   }
 
-  
+
 }
