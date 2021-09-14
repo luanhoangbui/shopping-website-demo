@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { changeView, orderLatest, orderNewest } from '../Actions/products.action';
+import { Products } from '../list-product/product.model';
 
 @Component({
   selector: 'app-view-type',
@@ -15,9 +16,14 @@ export class ViewTypeComponent implements OnInit {
   onGrid() { this.store.dispatch(changeView({ view: false })) };
 
   products$: Observable<any>;
+
+  products: Array<Products> = [];
+
   constructor(private store: Store<{ products: any }>) {
     this.products$ = store.select('products');
   }
+
+
 
   onLatest() {
     this.store.dispatch(orderLatest());
@@ -27,6 +33,7 @@ export class ViewTypeComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.products$.subscribe(r => { this.products = r.products })
   }
 
 }

@@ -1,20 +1,26 @@
+import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
-import { increment, orderLatest, orderNewest, brandFilter, changeView, searchProducts } from '../Actions/products.action';
+import { updateProducts, orderLatest, orderNewest, brandFilter, changeView, updateFilter } from '../Actions/products.action';
 import { Products } from '../list-product/product.model';
 
 export const initialState = {
   isList: true,
   products: Array<Products>(),
-  searchedProducts: Array<Products>(),
+  filteredProducts: Array<Products>(),
+  searchType: '',
+  choosenBrand: [],
+  price: 0,
 };
+
 let view = true;
+let amount: number;
 const _productReducer = createReducer(
 
   initialState,
 
-  on(searchProducts, (state, { products, searchedProducts }) => ({ ...state, products: products, searchedProducts: searchedProducts })),
+  on(updateFilter, (state, { searchType, choosenBrand, price }) => ({ ...state, searchType: searchType, choosenBrand: choosenBrand, price: price })),
 
-  on(increment, (state, { products }) => ({ ...state, products: products })),
+  on(updateProducts, (state, { products }) => ({ ...state, products: products })),
 
   on(changeView, (state, { view }) => ({ ...state, isList: view })),
 
@@ -27,21 +33,6 @@ const _productReducer = createReducer(
     let copyState = [...state.products];
     return { ...state, products: copyState.sort((a, b) => (a.id > b.id ? -1 : 1)) };
   },
-
-
-
-
-
-    // on(orderLatest, (state) => {
-    //   let copyState = [...state];
-    //   return copyState.sort((a, b) => (a.id > b.id ? 1 : -1));
-    // }),
-
-    // on(orderNewest, (state) => {
-    //   let copyState = [...state];
-    //   return copyState.sort((a, b) => (a.id > b.id ? -1 : 1));
-    // }),
-
   ));
 
 export function productReducer(state: any, action: any) {

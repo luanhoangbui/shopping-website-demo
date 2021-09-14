@@ -22,6 +22,5 @@ export class HttpServerService {
   public filterProducts(): Observable<any> {
     const url = `${this.API_SERVER}/products`;
     return this.httpClient.get<any>(url, this.httpOptions);
-
   }
 }
