@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Products } from '../list-product/product.model';
-import { HttpServerService } from '../Services/http-server.service';
 import { ProductTypeService } from './product-type.service';
 
 @Component({
@@ -11,25 +7,17 @@ import { ProductTypeService } from './product-type.service';
   styleUrls: ['./product-type.component.css']
 })
 export class ProductTypeComponent implements OnInit {
-  panelOpenState = false;
+
 
   types = ['T-shirt', 'Skirt', 'Shorts', 'Jeans', 'Hat', 'Pijama', 'Sandals'];
 
-  products$: Observable<Products>;
-  products: Array<Products> = [];
 
-  onInput(event: Event) {
-    this.productTypeService.setProductFilter((event.target as HTMLInputElement).value)
+  onInput(event: any) {
+    this.productTypeService.setProductFilter(event.target.value)
   }
 
-  constructor(private store: Store<{ products: Products }>, private httpServerService: HttpServerService, private productTypeService: ProductTypeService) {
-    this.products$ = store.select('products');
-  }
+  constructor(private productTypeService: ProductTypeService) { }
 
-  ngOnInit(): void {
-    this.httpServerService.getProducts().subscribe(data => {
-      this.products = data
-    });
-  }
+  ngOnInit(): void { }
 
 }

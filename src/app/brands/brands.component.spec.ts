@@ -4,6 +4,7 @@ import { Brands } from './brand.model';
 import { BrandsComponent } from './brands.component';
 import { BrandsService } from './brands.service';
 
+
 describe('BrandComponent', () => {
     const brandsMock: Array<Brands> = [
         { name: 'Gucci', amount: 120, checked: false },
@@ -31,14 +32,10 @@ describe('BrandComponent', () => {
         (brandsServiceMock.setBrandFilter as jasmine.Spy).and.returnValue(of(brandsMock))
     })
 
-    it('should have brand list', () => {
-        expect(brands.brands).toEqual(brandsMock)
-    })
 
     it('should called BrandFilter with brands[]', () => {
         brandsServiceMock.setBrandFilter(brandsMock);
         expect(brandsServiceMock.setBrandFilter).toHaveBeenCalledWith(brandsMock);
-
     })
 
     it('should called onChecked with brand', () => {
@@ -49,6 +46,4 @@ describe('BrandComponent', () => {
     it('should called ngOnInit', () => {
         brands.ngOnInit();
     })
-
-
 });

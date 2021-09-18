@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class HttpServerService {
-  private API_SERVER = 'http://localhost:3000';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -17,7 +16,7 @@ export class HttpServerService {
   constructor(private httpClient: HttpClient) { }
 
   public getProducts(): Observable<Products[]> {
-    const url = `${this.API_SERVER}/products`;
-    return this.httpClient.get<Products[]>(url, this.httpOptions);
+    const url = `http://localhost:3000/products`;
+    return this.httpClient.get<Products[]>(url);
   }
 }

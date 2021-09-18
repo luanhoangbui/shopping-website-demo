@@ -6,7 +6,7 @@ import { updateProducts } from '../Actions/products.action';
 import { Products } from './product.model';
 import { BrandsService } from '../brands/brands.service';
 import { ProductTypeService } from '../product-type/product-type.service';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { PriceRangeService } from '../price-range/price-range.service';
 import { Brands } from '../brands/brand.model';
 

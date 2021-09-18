@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Products } from '../list-product/product.model';
-import { HttpServerService } from '../Services/http-server.service';
 import { PriceRangeService } from './price-range.service';
 
 @Component({
@@ -13,8 +9,7 @@ import { PriceRangeService } from './price-range.service';
 export class PriceRangeComponent implements OnInit {
 
   price: number = 0;
-  products$: Observable<Products>;
-  products: Array<Products> = [];
+
 
   onSlider(event: any) {
     this.price = event.value;
@@ -26,13 +21,7 @@ export class PriceRangeComponent implements OnInit {
     this.priceRangeService.setPriceFilter(this.price)
   }
 
-  constructor(private store: Store<{ products: Products }>, private httpServerService: HttpServerService, private priceRangeService: PriceRangeService) {
-    this.products$ = store.select('products');
-  }
+  constructor(private priceRangeService: PriceRangeService) { }
 
-  ngOnInit(): void {
-    this.httpServerService.getProducts().subscribe(data => {
-      this.products = data
-    });
-  }
+  ngOnInit(): void { }
 }
