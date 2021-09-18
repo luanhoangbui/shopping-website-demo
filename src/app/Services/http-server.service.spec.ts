@@ -7,6 +7,7 @@ import { HttpServerService } from './http-server.service';
 import { Products } from '../list-product/product.model';
 
 describe('HttpServerService', () => {
+  const API_SERVER_mock = 'http://localhost:3000'
   let service: HttpServerService;
   let httpTestingController: HttpTestingController;
   let httpServerServiceMock: any;
@@ -39,14 +40,16 @@ describe('HttpServerService', () => {
     httpTestingController.verify()
   })
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
 
-  it('should ')
+  // it('should have api url', () => {
+  //   expect(httpServerServiceMock.API_SERVER).toEqual(API_SERVER_mock)
+  // })
 
   it('should make a get call for getProducts', () => {
     const req = httpTestingController.expectOne('http://localhost:3000/products');
+    service.getProducts().subscribe((res) => {
+      expect(res).toEqual({ productsMock })
+    });
     expect(req.request.method).toEqual('GET');
   });
 });

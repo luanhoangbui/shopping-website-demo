@@ -35,7 +35,20 @@ describe('BrandComponent', () => {
         expect(brands.brands).toEqual(brandsMock)
     })
 
-    it('should check brand', () => {
-        expect(brandsServiceMock.setBrandFilter).toHaveBeenCalledWith(brandsMock)
+    it('should called BrandFilter with brands[]', () => {
+        brandsServiceMock.setBrandFilter(brandsMock);
+        expect(brandsServiceMock.setBrandFilter).toHaveBeenCalledWith(brandsMock);
+
     })
+
+    it('should called onChecked with brand', () => {
+        brands.onChecked(brandsMock[0]);
+        expect(brandsMock[0].checked).toBeTruthy;
+    })
+
+    it('should called ngOnInit', () => {
+        brands.ngOnInit();
+    })
+
+
 });
