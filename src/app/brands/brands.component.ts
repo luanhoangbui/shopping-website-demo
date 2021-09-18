@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { HttpServerService } from '../Services/http-server.service';
+import { Brands } from './brand.model';
 import { BrandsService } from './brands.service';
 
 @Component({
@@ -9,31 +8,28 @@ import { BrandsService } from './brands.service';
   styleUrls: ['./brands.component.css']
 })
 export class BrandsComponent implements OnInit {
-  brands = [
-    { name: 'Gucci', ammount: '120', checked: false },
-    { name: 'Addidas', ammount: '15', checked: false },
-    { name: 'Nike', ammount: '35', checked: false },
-    { name: 'Uniqlo', ammount: '89', checked: false },
-    { name: 'Louis Vuiton', ammount: '30', checked: false },
+
+  brands: Array<Brands> = [
+    { name: 'Gucci', amount: 120, checked: false },
+    { name: 'Addidas', amount: 15, checked: false },
+    { name: 'Nike', amount: 35, checked: false },
+    { name: 'Uniqlo', amount: 89, checked: false },
+    { name: 'Louis Vuiton', amount: 30, checked: false },
   ]
 
-  products$: any;
-  products = [];
+  constructor(private brandsService: BrandsService) {
 
-  constructor(private store: Store<{ products: any }>, private httpServerService: HttpServerService, private brandsService: BrandsService) {
-    this.products$ = store.select('products');
   }
 
-  onChecked(brand: any) {
+  onChecked(brand: Brands) {
     brand.checked = !brand.checked;
     let checkedBrand = [...this.brands].filter(brand => brand.checked == true);
     this.brandsService.setBrandFilter(checkedBrand)
   }
 
   ngOnInit(): void {
-    this.httpServerService.getProducts().subscribe(data => {
-      this.products = data
-    });
 
-  }
+  };
+
 }
+

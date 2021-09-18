@@ -8,8 +8,7 @@
         </mat-expansion-panel-header>
         <div *ngFor="let brand of brands" class="brand">
             <mat-checkbox class="example-margin" [checked]="brand.checked" (change)="onChecked(brand)">{{brand.name}}</mat-checkbox>
-            <div class="ammount">{{brand.ammount}}</div>
+            <div class="amount">{{brand.amount}}</div>
         </div>
     </mat-expansion-panel>
-
 </mat-accordion>

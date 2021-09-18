@@ -19,11 +19,9 @@ export class ViewTypeComponent implements OnInit {
 
   products: Array<Products> = [];
 
-  constructor(private store: Store<{ products: any }>) {
+  constructor(private store: Store<{ products: Products }>) {
     this.products$ = store.select('products');
   }
-
-
 
   onLatest() {
     this.store.dispatch(orderLatest());

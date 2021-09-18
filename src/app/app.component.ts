@@ -11,15 +11,13 @@ import { Products } from './list-product/product.model';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  title = 'shopping-website';
-  products$: Observable<any>;
+  products$: Observable<Products>;
   products: Array<Products> = [];
 
-  constructor(private store: Store<{ products: any }>) {
+  constructor(private store: Store<{ products: Products }>) {
     this.products$ = store.select('products');
   }
   ngOnInit(): void {
-    // this.products$.pipe()
     this.products$.subscribe(r => { this.products = r.products })
   }
 }
