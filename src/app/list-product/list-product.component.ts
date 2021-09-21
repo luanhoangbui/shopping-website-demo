@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpServerService } from '../Services/http-server.service';
 import { Store } from '@ngrx/store';
-import { updateProducts } from '../Actions/products.action';
+import { orderNewest, updateProducts } from '../Actions/products.action';
 import { Products } from './product.model';
 import { BrandsService } from '../brands/brands.service';
 import { ProductTypeService } from '../product-type/product-type.service';
@@ -31,6 +31,7 @@ export class ListProductComponent implements OnInit {
     this.products$ = store.select('products');
   }
 
+
   public ngOnInit(): void {
     this.products$.subscribe(data => {
       this.products = data.products;
@@ -42,20 +43,80 @@ export class ListProductComponent implements OnInit {
   }
 
   public filter(): void {
-    let result: [];
-    if (this.brandFilter.length === 0 && this.productTypeFilter == '' && this.priceFilter === 0) {
+    if (this.brandFilter.length === 0 && this.productTypeFilter === '' && this.priceFilter === 0) {
       this.httpServerService.getProducts().subscribe(data => {
         this.store.dispatch(updateProducts({ products: data }));
       });
     }
     else {
-      this.httpServerService.getProducts().pipe(map(data => data.filter((e: Products) =>
-        (this.brandFilter.length > 0 ? this.brandFilter.some(ele => ele.name === e.brand) : true) &&
-        (this.productTypeFilter !== '' ? this.productTypeFilter === e.type : true) &&
-        (this.priceFilter > 0 ? this.priceFilter > e.price : true)))).subscribe(res => {
+      this.httpServerService.getProducts().pipe(map(data =>
+
+        data.filter((e: Products) =>
+          (this.brandFilter.length > 0
+            ? this.brandFilter.some(ele => ele.name === e.brand)
+            : true
+          )
+          &&
+          (this.productTypeFilter !== ''
+            ? this.productTypeFilter === e.type
+            : true
+          )
+          &&
+          (this.priceFilter > 0
+            ? this.priceFilter > e.price
+            : true
+          )
+        ))).subscribe(res => {
           this.store.dispatch(updateProducts({ products: res }));
         })
     }
   }
-
 }
+
+//   public filterProductType(): void {
+//     if (this.brandFilter.length === 0 && this.productTypeFilter === '' && this.priceFilter === 0) {
+//       this.httpServerService.getProducts().subscribe(data => {
+//         this.store.dispatch(updateProducts({ products: data }));
+//       });
+//     }
+//     else {
+//       this.httpServerService.getProducts().pipe(map(data =>
+//         data.filter((e: Products) =>
+//           this.productTypeFilter === e.type
+//         ))).subscribe(res => {
+//           this.store.dispatch(updateProducts({ products: res }));
+//         })
+//     }
+//   };
+//   public filterBrand(): void {
+//     if (this.brandFilter.length === 0 && this.productTypeFilter === '' && this.priceFilter === 0) {
+//       this.httpServerService.getProducts().subscribe(data => {
+//         this.store.dispatch(updateProducts({ products: data }));
+//       });
+//     }
+//     else {
+//       this.httpServerService.getProducts().pipe(map(data =>
+//         data.filter((e: Products) =>
+//           this.brandFilter.some(ele => ele.name === e.brand)
+//         ))).subscribe(res => {
+//           this.store.dispatch(updateProducts({ products: res }));
+//         })
+//     }
+//   }
+//   public filterPrice(): void {
+//     if (this.brandFilter.length === 0 && this.productTypeFilter === '' && this.priceFilter === 0) {
+//       this.httpServerService.getProducts().subscribe(data => {
+//         this.store.dispatch(updateProducts({ products: data }));
+//       });
+//     }
+//     else {
+//       this.httpServerService.getProducts().pipe(map(data =>
+//         data.filter((e: Products) =>
+//           this.priceFilter > e.price
+//         ))).subscribe(res => {
+//           this.store.dispatch(updateProducts({ products: res }));
+//         })
+//     }
+//   }
+
+// }

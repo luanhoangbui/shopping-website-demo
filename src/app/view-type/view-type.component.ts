@@ -11,17 +11,16 @@ import { Products } from '../list-product/product.model';
 })
 export class ViewTypeComponent implements OnInit {
 
+  constructor(private store: Store<{ products: Products }>) {
+    this.products$ = store.select('products');
+  }
+
   view = true;
   onList() { this.store.dispatch(changeView({ view: true })) };
   onGrid() { this.store.dispatch(changeView({ view: false })) };
 
-  products$: Observable<any>;
-
+  products$: Observable<Products>;
   products: Array<Products> = [];
-
-  constructor(private store: Store<{ products: Products }>) {
-    this.products$ = store.select('products');
-  }
 
   onLatest() {
     this.store.dispatch(orderLatest());

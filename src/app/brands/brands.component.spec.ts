@@ -13,7 +13,7 @@ describe('BrandComponent', () => {
         { name: 'Uniqlo', amount: 89, checked: false },
         { name: 'Louis Vuiton', amount: 30, checked: false },
     ];
-    const nameMock = 'Gucci';
+
     let fixture: ComponentFixture<BrandsComponent>;
     let brands: BrandsComponent;
     let brandsServiceMock: BrandsService;

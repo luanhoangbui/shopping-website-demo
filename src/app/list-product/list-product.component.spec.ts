@@ -9,6 +9,9 @@ import { Brands } from '../brands/brand.model';
 import { of } from 'rxjs';
 import { HttpServerService } from '../Services/http-server.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { Products } from './product.model';
+import { changeView, orderNewest, updateProducts } from '../Actions/products.action';
 
 describe('ListProductComponent', () => {
 
@@ -35,15 +38,25 @@ describe('ListProductComponent', () => {
         { id: 9, name: 'Great product name goes here', type: "t-shirt", rating: 2, description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.', price: 240, brand: 'Louis Vuiton', imgLink: 'https://ae01.alicdn.com/kf/Hd482a5bb302649ea865d256b997872a9f.jpg' },
         { id: 10, name: 'Great product name goes here', type: "skirt", rating: 5, description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.', price: 380, brand: 'Addidas', imgLink: 'https://ae01.alicdn.com/kf/H34f750e5aa7e45c7aa814c3c1d19e220R/Summer-Dresses-Women-Renaissance-Dress-Gathered-Dresses-Clothes-Square-Neck-Smocked-Waist-A-Line-Solid-Adjustable.jpeg_Q90.jpeg_.webp' }
     ];
-    const productTypeFilterMock = '';
-    const brandFilterMock = Array<Brands>();
-    const priceFilterMock = 0;
+    let store: MockStore<{}>;
+    const loadingState = {
+        isList: true,
+        products: Array<Products>(),
+        filteredProducts: Array<Products>(),
+        searchType: '',
+        choosenBrand: [],
+        price: 0,
+    };
+    let productTypeFilterMock: string;
+    let brandFilterMock: Array<string>;
+    let priceFilterMock: number;
 
     let fixture: ComponentFixture<ListProductComponent>;
     let listProduct: ListProductComponent;
     let priceRangeServiceMock: PriceRangeService;
     let brandsServiceMock: BrandsService;
     let productTypeServiceMock: ProductTypeService;
+    let getProductServiceMock: HttpServerService;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -53,6 +66,7 @@ describe('ListProductComponent', () => {
             providers: [
                 HttpServerService,
                 { provide: HttpServerService },
+                provideMockStore({ initialState: loadingState })
             ],
             imports: [
                 StoreModule.forRoot({ products: productReducer }),
@@ -61,9 +75,8 @@ describe('ListProductComponent', () => {
         }).compileComponents();
         httpService = TestBed.inject(HttpServerService);
         httpTestingController = TestBed.inject(HttpTestingController);
+        store = TestBed.get(MockStore);
     });
-
-
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ListProductComponent);
@@ -74,32 +87,86 @@ describe('ListProductComponent', () => {
         (brandsServiceMock.setBrandFilter as jasmine.Spy).and.returnValue(of(brandsMock));
         productTypeServiceMock = jasmine.createSpyObj('ProductTypeService', ['setProductFilter']);
         (productTypeServiceMock.setProductFilter as jasmine.Spy).and.returnValue(of(type));
+        getProductServiceMock = jasmine.createSpyObj('httpServerService', ['getProducts']);
+        (getProductServiceMock.getProducts as jasmine.Spy).and.returnValue(of(productsMock));
+
     })
 
     it('should call ngOnInit', () => {
         listProduct.ngOnInit();
-        expect(listProduct.priceFilter).toEqual(priceFilterMock);
-        expect(listProduct.brandFilter).toEqual(brandFilterMock);
-        expect(listProduct.productTypeFilter).toEqual(productTypeFilterMock);
+        expect(listProduct.priceFilter).toEqual(0);
+        expect(listProduct.brandFilter).toEqual([]);
+        expect(listProduct.productTypeFilter).toEqual('');
     })
 
     it('getProduct() should http GET products', () => {
-
         httpService.getProducts().subscribe((res) => {
             expect(res[0].id).toEqual(1);
             expect(res[0].name).toEqual('Great product name goes here');
         });
-
         const req = httpTestingController.expectOne(
             'http://localhost:3000/products'
         );
-
         req.flush(productsMock);
         httpTestingController.verify()
     })
 
     it('should not change products list', () => {
+        spyOn(store, 'dispatch').and.callThrough();
+        listProduct.brandFilter = []; listProduct.productTypeFilter = ''; listProduct.priceFilter = 0;
         listProduct.filter();
+        expect(store.dispatch).toHaveBeenCalledTimes(1);
+        expect(store.dispatch).toHaveBeenCalledWith(updateProducts({ products: [] }));
+        const req = httpTestingController.expectOne(
+            'http://localhost:3000/products'
+        );
+        req.flush(productsMock);
+        httpTestingController.verify();
     })
 
+    it('should change products list', () => {
+        listProduct.brandFilter = [{
+            name: 'name',
+            amount: 30,
+            checked: true,
+        },
+        {
+            name: 'name',
+            amount: 20,
+            checked: false,
+        }];
+        listProduct.productTypeFilter = 'shorts'; listProduct.priceFilter = 3;
+        listProduct.filter();
+        spyOn(store, 'dispatch').and.callThrough();
+        expect(store.dispatch).toHaveBeenCalledTimes(1);
+        expect(store.dispatch).toHaveBeenCalledWith(updateProducts({ products: [] }));
+        const req = httpTestingController.expectOne(
+            'http://localhost:3000/products'
+        );
+        req.flush(productsMock);
+        httpTestingController.verify();
+    })
+
+    it('should change products list', () => {
+        listProduct.brandFilter = [{
+            name: 'name',
+            amount: 30,
+            checked: true,
+        },
+        {
+            name: 'name',
+            amount: 20,
+            checked: false,
+        }];
+        listProduct.productTypeFilter = ''; listProduct.priceFilter = 0;
+        listProduct.filter();
+        spyOn(store, 'dispatch').and.callThrough();
+        expect(store.dispatch).toHaveBeenCalledTimes(1);
+        expect(store.dispatch).toHaveBeenCalledWith(updateProducts({ products: [] }));
+        const req = httpTestingController.expectOne(
+            'http://localhost:3000/products'
+        );
+        req.flush(productsMock);
+        httpTestingController.verify();
+    })
 });

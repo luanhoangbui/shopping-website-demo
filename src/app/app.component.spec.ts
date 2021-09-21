@@ -8,8 +8,7 @@ describe('AppComponent', () => {
 
   let fixture: ComponentFixture<AppComponent>;
   let app: AppComponent;
-  const productsMock: Array<Products[]> = []
-
+  let productsMock: Array<Products>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -32,7 +31,9 @@ describe('AppComponent', () => {
   })
 
   it('should call ngOnInit', () => {
+    productsMock = [];
     app.ngOnInit();
+    expect(app.products).toEqual(productsMock);
   })
 });
 

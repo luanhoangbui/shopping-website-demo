@@ -1,6 +1,5 @@
-import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
-import { updateProducts, orderLatest, orderNewest, brandFilter, changeView, updateFilter } from '../Actions/products.action';
+import { updateProducts, orderLatest, orderNewest, changeView, updateFilter } from '../Actions/products.action';
 import { Products } from '../list-product/product.model';
 
 export const initialState = {
@@ -12,8 +11,6 @@ export const initialState = {
   price: 0,
 };
 
-let view = true;
-let amount: number;
 const _productReducer = createReducer(
 
   initialState,
@@ -26,12 +23,12 @@ const _productReducer = createReducer(
 
   on(orderLatest, (state) => {
     let copyState = [...state.products];
-    return { ...state, products: copyState.sort((a, b) => (a.id > b.id ? 1 : -1)) };
+    return { ...state, products: copyState.sort((a, b) => (a.id - b.id)) };
   }),
 
   on(orderNewest, (state) => {
     let copyState = [...state.products];
-    return { ...state, products: copyState.sort((a, b) => (a.id > b.id ? -1 : 1)) };
+    return { ...state, products: copyState.sort((a, b) => (b.id - a.id)) };
   },
   ));
 
