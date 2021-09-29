@@ -1,11 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { updateProducts, orderLatest, orderNewest, changeView, updateFilter } from '../Actions/products.action';
-import { Products } from '../list-product/product.model';
+import { Product } from '../list-product/product.model';
 
 export const initialState = {
   isList: true,
-  products: Array<Products>(),
-  filteredProducts: Array<Products>(),
+  products: Array<Product>(),
+  filteredProducts: Array<Product>(),
   searchType: '',
   choosenBrand: [],
   price: 0,

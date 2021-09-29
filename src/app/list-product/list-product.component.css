@@ -32,20 +32,14 @@
     margin: 20px 20px 20px 20px;
 }
 
-::ng-deep .mat-badge-content {
-    margin-top: 15px;
-    margin-left: 15px;
-    font-size: 12;
-    font-weight: 800;
-    width: 5px;
-    display: grid;
-    min-width: 40px;
-    max-height: 15px;
-    text-align: center;
-    align-items: center;
-    padding: 0px 3px 5px 3px;
-    top: -20px;
-    right: -22px;
-    border-radius: 10px;
-    background-color: red;
+.btn-detail {
+    background-color: #304ffe;
+    width: 100%;
+    color: white;
+    margin-bottom: 5px
+}
+
+.btn-favorite {
+    width: 100%;
+    background-color: gainsboro
 }

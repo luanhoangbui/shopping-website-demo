@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Brands } from './brand.model';
+import { Brand } from './brand.model';
 import { BrandsService } from './brands.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { BrandsService } from './brands.service';
 })
 export class BrandsComponent implements OnInit {
 
-  brands: Array<Brands> = [
+  brands: Array<Brand> = [
     { name: 'Gucci', amount: 120, checked: false },
     { name: 'Addidas', amount: 15, checked: false },
     { name: 'Nike', amount: 35, checked: false },
@@ -21,7 +21,7 @@ export class BrandsComponent implements OnInit {
 
   }
 
-  onChecked(brand: Brands) {
+  onCheck(brand: Brand) {
     brand.checked = !brand.checked;
     let checkedBrand = [...this.brands].filter(brand => brand.checked == true);
     this.brandsService.setBrandFilter(checkedBrand)

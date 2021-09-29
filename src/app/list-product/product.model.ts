@@ -1,6 +1,6 @@
-export interface Products {
+export interface Product {
     isList: boolean;
-    products: Products[];
+    products: Product[];
     id: number;
     name: string;
     type: string;

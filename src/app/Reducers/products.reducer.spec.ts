@@ -1,6 +1,6 @@
 import { changeView, orderLatest, orderNewest, updateFilter, updateProducts } from '../Actions/products.action';
-import { Products } from '../list-product/product.model';
-import { initialState, productReducer } from '../Reducers/products.reducer';
+import { Product } from '../list-product/product.model';
+import { productReducer } from '../Reducers/products.reducer';
 
 describe('Reducer: Products', () => {
 
@@ -12,8 +12,8 @@ describe('Reducer: Products', () => {
         it('should load new filter', () => {
             const state = {
                 isList: true,
-                products: Array<Products>(),
-                filteredProducts: Array<Products>(),
+                products: Array<Product>(),
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
@@ -21,8 +21,8 @@ describe('Reducer: Products', () => {
 
             const expected = {
                 isList: true,
-                products: Array<Products>(),
-                filteredProducts: Array<Products>(),
+                products: Array<Product>(),
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
@@ -35,8 +35,8 @@ describe('Reducer: Products', () => {
         it('should update products list', () => {
             const state = {
                 isList: true,
-                products: Array<Products>(),
-                filteredProducts: Array<Products>(),
+                products: Array<Product>(),
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
@@ -44,13 +44,13 @@ describe('Reducer: Products', () => {
 
             const expected = {
                 isList: true,
-                products: Array<Products>(),
-                filteredProducts: Array<Products>(),
+                products: Array<Product>(),
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
             };
-            expect(productReducer(state, updateProducts({ products: Array<Products>() }))).toEqual(expected);
+            expect(productReducer(state, updateProducts({ products: Array<Product>() }))).toEqual(expected);
         })
     })
 
@@ -58,8 +58,8 @@ describe('Reducer: Products', () => {
         it('should not change view', () => {
             const state = {
                 isList: true,
-                products: Array<Products>(),
-                filteredProducts: Array<Products>(),
+                products: Array<Product>(),
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
@@ -67,8 +67,8 @@ describe('Reducer: Products', () => {
 
             const expected = {
                 isList: true,
-                products: Array<Products>(),
-                filteredProducts: Array<Products>(),
+                products: Array<Product>(),
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
@@ -81,8 +81,8 @@ describe('Reducer: Products', () => {
         it('should change view', () => {
             const state = {
                 isList: true,
-                products: Array<Products>(),
-                filteredProducts: Array<Products>(),
+                products: Array<Product>(),
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
@@ -90,8 +90,8 @@ describe('Reducer: Products', () => {
 
             const expected = {
                 isList: false,
-                products: Array<Products>(),
-                filteredProducts: Array<Products>(),
+                products: Array<Product>(),
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
@@ -108,8 +108,8 @@ describe('Reducer: Products', () => {
                     { id: 1, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
                     { id: 2, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
                     { id: 3, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
-                ] as Products[],
-                filteredProducts: Array<Products>(),
+                ] as Product[],
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
@@ -121,8 +121,8 @@ describe('Reducer: Products', () => {
                     { id: 3, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
                     { id: 2, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
                     { id: 1, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
-                ] as Products[],
-                filteredProducts: Array<Products>(),
+                ] as Product[],
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
@@ -139,8 +139,8 @@ describe('Reducer: Products', () => {
                     { id: 3, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
                     { id: 2, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
                     { id: 1, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
-                ] as Products[],
-                filteredProducts: Array<Products>(),
+                ] as Product[],
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,
@@ -152,8 +152,8 @@ describe('Reducer: Products', () => {
                     { id: 1, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
                     { id: 2, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
                     { id: 3, name: 'aaa', type: 'shorts', rating: 3, description: 'abasc', price: 100, brand: 'Gucci', imgLink: 'kajshdasjd' },
-                ] as Products[],
-                filteredProducts: Array<Products>(),
+                ] as Product[],
+                filteredProducts: Array<Product>(),
                 searchType: '',
                 choosenBrand: [],
                 price: 0,

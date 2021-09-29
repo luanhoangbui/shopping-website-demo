@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Products } from './list-product/product.model';
+import { Subscription } from 'rxjs';
+import { Product } from './list-product/product.model';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +11,12 @@ import { Products } from './list-product/product.model';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  products$: Observable<Products>;
-  products: Array<Products> = [];
+  products$!: Subscription;
+  products: Array<Product> = [];
 
-  constructor(private store: Store<{ products: Products }>) {
-    this.products$ = store.select('products');
-  }
+  constructor(private store: Store<{ products: Product }>) { }
+
   ngOnInit(): void {
-    this.products$.subscribe(r => { this.products = r.products })
+    this.products$ = this.store.select('products').subscribe(r => { this.products = r.products })
   }
 }

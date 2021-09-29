@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { changeView, orderLatest, orderNewest } from '../Actions/products.action';
-import { Products } from '../list-product/product.model';
+import { Product } from '../list-product/product.model';
 
 @Component({
   selector: 'app-view-type',
@@ -11,26 +11,26 @@ import { Products } from '../list-product/product.model';
 })
 export class ViewTypeComponent implements OnInit {
 
-  constructor(private store: Store<{ products: Products }>) {
+  constructor(private store: Store<{ products: Product }>) {
     this.products$ = store.select('products');
   }
 
   view = true;
-  onList() { this.store.dispatch(changeView({ view: true })) };
-  onGrid() { this.store.dispatch(changeView({ view: false })) };
+  viewList() { this.store.dispatch(changeView({ view: true })) };
+  viewGrid() { this.store.dispatch(changeView({ view: false })) };
 
-  products$: Observable<Products>;
-  products: Array<Products> = [];
+  products$: Observable<Product>;
+  products: Array<Product> = [];
 
-  onLatest() {
+  orderLatest() {
     this.store.dispatch(orderLatest());
   };
-  onNewest() {
+  orderNewest() {
     this.store.dispatch(orderNewest());
   };
 
   ngOnInit(): void {
-    this.products$.subscribe(r => { this.products = r.products })
+    this.products$.subscribe(r => { this.products = r.products; console.log(r.products) })
   }
 
 }

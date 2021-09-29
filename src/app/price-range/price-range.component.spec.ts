@@ -38,7 +38,7 @@ describe('PriceRangeComponent', () => {
         let event = {
             value: 10
         }
-        priceRange.onSlider(event);
+        priceRange.onSlide(event);
         expect(priceRange.price).toEqual(event.value)
     })
 

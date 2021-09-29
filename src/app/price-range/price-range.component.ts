@@ -11,7 +11,7 @@ export class PriceRangeComponent implements OnInit {
   price: number = 0;
 
 
-  onSlider(event: any) {
+  onSlide(event: any) {
     this.price = event.value;
     this.priceRangeService.setPriceFilter(this.price)
   };

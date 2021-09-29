@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { Brands } from './brand.model';
+import { Brand } from './brand.model';
 import { BrandsComponent } from './brands.component';
 import { BrandsService } from './brands.service';
 
 
 describe('BrandComponent', () => {
-    const brandsMock: Array<Brands> = [
+    const brandsMock: Array<Brand> = [
         { name: 'Gucci', amount: 120, checked: false },
         { name: 'Addidas', amount: 15, checked: false },
         { name: 'Nike', amount: 35, checked: false },
@@ -15,7 +15,7 @@ describe('BrandComponent', () => {
     ];
 
     let fixture: ComponentFixture<BrandsComponent>;
-    let brands: BrandsComponent;
+    let brand: BrandsComponent;
     let brandsServiceMock: BrandsService;
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -27,7 +27,7 @@ describe('BrandComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(BrandsComponent);
-        brands = fixture.componentInstance;
+        brand = fixture.componentInstance;
         brandsServiceMock = jasmine.createSpyObj('BrandService', ['setBrandFilter']);
         (brandsServiceMock.setBrandFilter as jasmine.Spy).and.returnValue(of(brandsMock))
     })
@@ -39,11 +39,11 @@ describe('BrandComponent', () => {
     })
 
     it('should called onChecked with brand', () => {
-        brands.onChecked(brandsMock[0]);
+        brand.onCheck(brandsMock[0]);
         expect(brandsMock[0].checked).toBeTruthy;
     })
 
     it('should called ngOnInit', () => {
-        brands.ngOnInit();
+        brand.ngOnInit();
     })
 });

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { Products } from './list-product/product.model';
+import { Product } from './list-product/product.model';
 import { StoreModule } from '@ngrx/store';
 import { productReducer } from './Reducers/products.reducer';
 
@@ -8,7 +8,6 @@ describe('AppComponent', () => {
 
   let fixture: ComponentFixture<AppComponent>;
   let app: AppComponent;
-  let productsMock: Array<Products>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -31,9 +30,8 @@ describe('AppComponent', () => {
   })
 
   it('should call ngOnInit', () => {
-    productsMock = [];
     app.ngOnInit();
-    expect(app.products).toEqual(productsMock);
+    expect(app.products).toEqual([]);
   })
 });
 
